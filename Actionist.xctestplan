@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "5363599A-3F52-4131-95DD-3D921A783866",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Actionist.xcodeproj",
+      "identifier" : "38306A2B2D6B3C4500A1060F",
+      "name" : "Actionist"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Actionist.xcodeproj",
+        "identifier" : "38306A3B2D6B3C4700A1060F",
+        "name" : "ActionistTests"
+      }
+    }
+  ],
+  "version" : 1
+}
