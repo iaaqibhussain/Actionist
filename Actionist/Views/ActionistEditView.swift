@@ -9,10 +9,9 @@ import SwiftUI
 import ComposableArchitecture
 
 struct ActionistEditView: View {
-    let store: StoreOf<ActionistFeature>
+    @Bindable var store: StoreOf<ActionistEditFeature>
     @State private var title: String = ""
     @Binding var selectedIndex: Int
-    var dismiss: () -> Void
     
     var body: some View {
         NavigationView {
@@ -45,7 +44,7 @@ private extension ActionistEditView {
     func cancelToolbarItem() -> some ToolbarContent {
         ToolbarItem(placement: .cancellationAction) {
             Button("Cancel") {
-                dismiss()
+                store.send(.cancelButtonTapped)
             }
         }
     }
@@ -56,11 +55,11 @@ private extension ActionistEditView {
 private extension ActionistEditView {
     
     func onAppear() {
-        title = store.items[selectedIndex].title
+       title = store.item.title
     }
     
     func saveAction() {
-        store.send(.update(selectedIndex, title))
-        dismiss()
+        store.send(.update(title))
+        store.send(.saveButtonTapped)
     }
 }

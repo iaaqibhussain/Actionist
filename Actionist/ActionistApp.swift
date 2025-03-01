@@ -12,9 +12,11 @@ import ComposableArchitecture
 struct ActionistApp: App {
     var body: some Scene {
         WindowGroup {
-            ActionistView(store: Store(initialState: ActionistFeature.State()) {
-                ActionistFeature()
-              })
+            ActionistView(
+                store: Store(initialState: ActionistFeature.State()) {
+                    ActionistFeature()
+                }
+            )
         }
     }
 }

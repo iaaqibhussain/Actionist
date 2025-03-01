@@ -9,9 +9,8 @@ import SwiftUI
 import ComposableArchitecture
 
 struct ActionistView: View {
-    let store: StoreOf<ActionistFeature>
+    @Bindable var store: StoreOf<ActionistFeature>
     @State private var newItem: String = ""
-    @State private var isEditSheetPresented: Bool = false
     @State private var selectedIndex: Int = -1
     
     var body: some View {
@@ -24,18 +23,16 @@ struct ActionistView: View {
                 }
             }
             .navigationTitle("Actionist")
-            .sheet(isPresented: $isEditSheetPresented) {
-                editTodoView()
+            .sheet(
+                item: $store.scope(state: \.editState, action: \.updateItem)
+            ) { store in
+                
+                editTodoView(store)
             }
         }
     }
 }
 
-#Preview {
-    ActionistView(store: Store(initialState: ActionistFeature.State()) {
-        ActionistFeature()
-    })
-}
 // MARK: - Subviews
 
 private extension ActionistView {
@@ -52,7 +49,7 @@ private extension ActionistView {
         }
     }
     
-    func listItemViews(_ items: [ActionItem]) -> some View {
+    func listItemViews(_ items: IdentifiedArrayOf<ActionItem>) -> some View {
         ForEach(items.indices, id: \.self) { index in
             let item = items[index]
             listItemView(
@@ -77,15 +74,15 @@ private extension ActionistView {
                     .foregroundColor(item.isCompleted ? .green : .gray)
             }
         }.swipeActions {
-            updateTodoSwipeButton(index)
+            updateTodoSwipeButton(item, index)
             deleteTodoSwipeButton(index)
         }
     }
     
-    func updateTodoSwipeButton(_ index: Int) -> some View {
+    func updateTodoSwipeButton(_ item: ActionItem, _ index: Int) -> some View {
         Button(action: {
             selectedIndex = index
-            isEditSheetPresented.toggle()
+            store.send(.updateButtonTapped(item, index))
         }) {
             Label("Update", systemImage: "pencil")
         }
@@ -100,13 +97,11 @@ private extension ActionistView {
         }
     }
     
-    func editTodoView() -> some View {
+    func editTodoView(_ store: StoreOf<ActionistEditFeature>) -> some View {
         ActionistEditView(
             store: store,
             selectedIndex: $selectedIndex
-        ) {
-            isEditSheetPresented.toggle()
-        }
+        )
     }
 }
 
@@ -118,4 +113,12 @@ private extension ActionistView {
         store.send(.add(newItem))
         newItem = ""
     }
+}
+
+#Preview {
+    ActionistView(
+        store: Store(initialState: ActionistFeature.State()) {
+            ActionistFeature()
+        }
+      )
 }

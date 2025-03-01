@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ActionItem: Identifiable {
+struct ActionItem: Identifiable, Codable {
     let id = UUID()
     var title: String
     var isCompleted: Bool = false
