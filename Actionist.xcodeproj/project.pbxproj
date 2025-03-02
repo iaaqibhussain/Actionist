@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,16 +27,8 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		38306A2E2D6B3C4500A1060F /* Actionist */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Actionist;
-			sourceTree = "<group>";
-		};
-		38306A3F2D6B3C4700A1060F /* ActionistTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ActionistTests;
-			sourceTree = "<group>";
-		};
+		38306A2E2D6B3C4500A1060F /* Actionist */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Actionist; sourceTree = "<group>"; };
+		38306A3F2D6B3C4700A1060F /* ActionistTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ActionistTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +138,7 @@
 				};
 			};
 			buildConfigurationList = 38306A272D6B3C4500A1060F /* Build configuration list for PBXProject "Actionist" */;
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -157,7 +150,6 @@
 			packageReferences = (
 				38306A6F2D6B3E3100A1060F /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 38306A2D2D6B3C4500A1060F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
