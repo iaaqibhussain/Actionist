@@ -21,7 +21,10 @@ platform :ios do
     scan(
       scheme: "Actionist",
       code_coverage: true,
-      xcargs: "-skipMacroValidation"
+      xcargs: "-skipMacroValidation",
+      result_bundle: true,  # Generates .xcresult file
+      output_types: "",      # Disables additional test output formats
+      output_directory: "fastlane/test_results" # Store xcresult elsewhere (optional)
     )
   end
 end

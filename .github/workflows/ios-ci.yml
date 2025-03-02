@@ -61,7 +61,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-results
-          path: ./fastlane/test_output
+          path: ./fastlane/test_results
 
 
 #jobs:
