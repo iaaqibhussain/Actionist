@@ -59,4 +59,5 @@ fastlane/.idea
 *.iml
 .build
 fastlane/test_output
+fastlane/test_results
 fastlane/report.xml
