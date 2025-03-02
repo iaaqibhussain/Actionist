@@ -28,9 +28,7 @@ jobs:
 
       - name: Install Fastlane
         run: bundle install
-        working-directory: ./ios
 
       - name: Run Tests
         run: bundle exec fastlane unit_tests
-        working-directory: ./ios
 
