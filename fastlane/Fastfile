@@ -21,7 +21,6 @@ platform :ios do
     scan(
       scheme: "Actionist",
       code_coverage: true,
-      device: "iPhone 13",
       clean: false
     )
   end

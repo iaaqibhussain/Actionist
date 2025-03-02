@@ -18,24 +18,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Cache Ruby gems
+      - name: Cache Bundler dependencies
         uses: actions/cache@v3
         with:
-          path: |
-            ~/.bundle
-            vendor/bundle
-            ./ios/Pods
-          key: ${{ runner.os }}-ruby-${{ hashFiles('**/Gemfile.lock') }}
+          path: vendor/bundle
+          key: macOS-ruby-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}-ruby-
+            macOS-ruby-
+          fail-on-cache-miss: false
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0
+          ruby-version: 3.4
 
       - name: Install Bundler dependencies
-        run: bundle install --path vendor/bundle
+        run: |
+          bundle install --path vendor/bundle
+        working-directory: ./
+
+      - name: Check installed gems
+        run: |
+          bundle exec gem list | grep fastlane
+        working-directory: ./
 
       - name: Run Tests
         run: bundle exec fastlane unit_tests
+        working-directory: ./ 
