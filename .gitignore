@@ -29,7 +29,6 @@ xcuserdata/
 *.xcworkspace/xcshareddata/swiftpm/
 *.xcodeproj/*.xcworkspace/*.xcworkspacedata
 .bundle/
-vendor/bundle
 
 
 
