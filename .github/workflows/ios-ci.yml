@@ -11,7 +11,7 @@ on:
       - develop
 
 jobs:
-  test:
+  Run Unit Test:
     runs-on: macos-latest
 
     steps:
@@ -42,6 +42,10 @@ jobs:
           bundle exec gem list | grep fastlane
         working-directory: ./
 
+      - name: Set Xcode version
+        run: |
+          sudo xcode-select -s /Applications/Xcode_16.2.app
+
       - name: Run Tests
         run: bundle exec fastlane unit_tests
-        working-directory: ./ 
+        working-directory: ./

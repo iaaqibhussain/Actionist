@@ -18,6 +18,7 @@ default_platform(:ios)
 platform :ios do
   desc "Run unit tests"
   lane :unit_tests do
+    sh("sudo xcode-select -s /Applications/Xcode_16.2.app")
     scan(
       scheme: "Actionist",
       code_coverage: true,
