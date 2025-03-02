@@ -11,25 +11,25 @@ import SwiftUI
 @Reducer
 struct ActionistFeature {
     @ObservableState
-    struct State {
-        @Presents var editState: ActionistEditFeature.State?
+    struct State: Equatable {
         var items: IdentifiedArrayOf<ActionItem> = []
-        
+        @Presents var editState: ActionistEditFeature.State?
     }
     
     enum Action {
         case add(String)
         case remove(Int)
         case updateButtonTapped(ActionItem, Int)
-        case updateItem(PresentationAction<ActionistEditFeature.Action>)//(Int, String)
+        case updateItem(PresentationAction<ActionistEditFeature.Action>)
         case isComplete(Int)
     }
     
+    @Dependency(\.uuid) var uuid
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case let .add(task):
-                let actionItem = ActionItem(title: task)
+                let actionItem = ActionItem(id: self.uuid(), title: task)
                 state.items.append(actionItem)
                 return .none
             case let .remove(index):

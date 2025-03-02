@@ -5,10 +5,14 @@
 //  Created by Syed Muhammad Aaqib Hussain on 23.02.25.
 //
 
-import XCTest
+import ComposableArchitecture
+import Foundation
+import Testing
+
 @testable import Actionist
 
-final class ActionistTests: XCTestCase {
+@MainActor
+struct Actio {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

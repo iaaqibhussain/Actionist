@@ -10,7 +10,7 @@ import ComposableArchitecture
 @Reducer
 struct ActionistEditFeature {
     @ObservableState
-    struct State {
+    struct State: Equatable {
         var item: ActionItem
         var selectedIndex: Int
     }
