@@ -1,0 +1,19 @@
+current directory: /Users/s.hussain.8/Documents/Github/Actionist/vendor/bundle/ruby/3.4.0/gems/sysrandom-1.0.5/ext/sysrandom
+/opt/homebrew/opt/ruby/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/s.hussain.8/Documents/Github/Actionist/vendor/bundle/ruby/3.4.0/gems/sysrandom-1.0.5/ext/sysrandom
+make DESTDIR\= sitearchdir\=./.gem.20250302-27543-5zfutg sitelibdir\=./.gem.20250302-27543-5zfutg clean
+
+current directory: /Users/s.hussain.8/Documents/Github/Actionist/vendor/bundle/ruby/3.4.0/gems/sysrandom-1.0.5/ext/sysrandom
+make DESTDIR\= sitearchdir\=./.gem.20250302-27543-5zfutg sitelibdir\=./.gem.20250302-27543-5zfutg
+compiling randombytes_sysrandom.c
+compiling sysrandom_ext.c
+linking shared-object sysrandom_ext.bundle
+
+current directory: /Users/s.hussain.8/Documents/Github/Actionist/vendor/bundle/ruby/3.4.0/gems/sysrandom-1.0.5/ext/sysrandom
+make DESTDIR\= sitearchdir\=./.gem.20250302-27543-5zfutg sitelibdir\=./.gem.20250302-27543-5zfutg install
+/usr/bin/install -c -m 0755 sysrandom_ext.bundle ./.gem.20250302-27543-5zfutg
+
+current directory: /Users/s.hussain.8/Documents/Github/Actionist/vendor/bundle/ruby/3.4.0/gems/sysrandom-1.0.5/ext/sysrandom
+make DESTDIR\= sitearchdir\=./.gem.20250302-27543-5zfutg sitelibdir\=./.gem.20250302-27543-5zfutg clean
