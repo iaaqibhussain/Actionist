@@ -11,7 +11,7 @@ on:
       - develop
 
 jobs:
-  Run Unit Test:
+  run_unit_test:
     runs-on: macos-latest
 
     steps:
