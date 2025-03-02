@@ -23,6 +23,7 @@ jobs:
         with:
           path: |
             ~/.bundle
+            vendor/bundle
             ./ios/Pods
           key: ${{ runner.os }}-ruby-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
@@ -35,10 +36,6 @@ jobs:
 
       - name: Install Bundler dependencies
         run: bundle install --path vendor/bundle
-
-      - name: Install Fastlane
-        run: |
-          gem install fastlane
 
       - name: Run Tests
         run: bundle exec fastlane unit_tests
