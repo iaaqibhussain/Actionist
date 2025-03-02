@@ -29,8 +29,11 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.4
-          bundler-cache: false  # ⬅️ Disabled to avoid conflicts with actions/cache
+          bundler-cache: false 
 
+      - name: List contents of vendor directory
+        run: ls -al ./vendor
+     
       - name: Cache Bundler dependencies
         uses: actions/cache@v3
         with:
