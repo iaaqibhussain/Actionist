@@ -9,14 +9,15 @@ on:
     branches:
       - main
       - develop
-
+      
+      
 jobs:
   run_unit_test:
     runs-on: macos-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
@@ -24,34 +25,77 @@ jobs:
       - name: Debug Xcode Version
         run: xcodebuild -version
 
-#      - name: Build
-#        run: |
-#          xcodebuild -scheme "Actionist" -destination "platform=iOS Simulator,name=iPhone 16 Pro,OS=18.1" -skipMacroValidation
-
-      - name: Cache Bundler dependencies
-        uses: actions/cache@v3
-        with:
-          path: vendor/bundle
-          key: macOS-ruby-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            macOS-ruby-
-          fail-on-cache-miss: false
-
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.4
+          bundler-cache: false  # ⬅️ Disabled to avoid conflicts with actions/cache
+
+      - name: Cache Bundler dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            vendor/bundle
+          key: macOS-ruby-${{ runner.os }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            macOS-ruby-${{ runner.os }}-
 
       - name: Install Bundler dependencies
         run: |
-          bundle install --path vendor/bundle
-        working-directory: ./
+          gem install bundler
+          bundle config set path 'vendor/bundle'
+          bundle install
 
       - name: Check installed gems
         run: |
           bundle exec gem list | grep fastlane
-        working-directory: ./
 
       - name: Run Tests
         run: bundle exec fastlane unit_tests
-        working-directory: ./
+
+
+#jobs:
+#  run_unit_test:
+#    runs-on: macos-latest
+#
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v4
+#
+#      - name: Select Xcode
+#        run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
+#
+#      - name: Debug Xcode Version
+#        run: xcodebuild -version
+#
+##      - name: Build
+##        run: |
+##          xcodebuild -scheme "Actionist" -destination "platform=iOS Simulator,name=iPhone 16 Pro,OS=18.1" -skipMacroValidation
+#
+#      - name: Cache Bundler dependencies
+#        uses: actions/cache@v3
+#        with:
+#          path: vendor/bundle
+#          key: macOS-ruby-${{ hashFiles('**/Gemfile.lock') }}
+#          restore-keys: |
+#            macOS-ruby-
+#          fail-on-cache-miss: false
+#
+#      - name: Set up Ruby
+#        uses: ruby/setup-ruby@v1
+#        with:
+#          ruby-version: 3.4
+#
+#      - name: Install Bundler dependencies
+#        run: |
+#          bundle install --path vendor/bundle
+#        working-directory: ./
+#
+#      - name: Check installed gems
+#        run: |
+#          bundle exec gem list | grep fastlane
+#        working-directory: ./
+#
+#      - name: Run Tests
+#        run: bundle exec fastlane unit_tests
+#        working-directory: ./
