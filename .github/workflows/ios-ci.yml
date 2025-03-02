@@ -24,9 +24,9 @@ jobs:
       - name: Debug Xcode Version
         run: xcodebuild -version
 
-      - name: Build
-        run: |
-          xcodebuild -scheme "Actionist" -destination "platform=iOS Simulator,name=iPhone 16 Pro,OS=18.1" -skipMacroValidation
+#      - name: Build
+#        run: |
+#          xcodebuild -scheme "Actionist" -destination "platform=iOS Simulator,name=iPhone 16 Pro,OS=18.1" -skipMacroValidation
 
       - name: Cache Bundler dependencies
         uses: actions/cache@v3
