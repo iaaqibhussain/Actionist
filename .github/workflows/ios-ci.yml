@@ -1,0 +1,36 @@
+name: iOS CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0
+
+      - name: Install Bundler
+        run: gem install bundler
+
+      - name: Install Fastlane
+        run: bundle install
+        working-directory: ./ios
+
+      - name: Run Tests
+        run: bundle exec fastlane unit_tests
+        working-directory: ./ios
+
